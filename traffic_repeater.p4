@@ -39,7 +39,17 @@ control MyIngress(inout headers hdr,
                   inout standard_metadata_t standard_metadata) {
     // 转发表
     counter(512, CounterType.packets_and_bytes) port_counter;
-
+    // 转发动作
+    action forward(bit<9> egress_port) {
+        standard_metadata.egress_spec = egress_port;
+        port_counter.count((bit<32>) standard_metadata.ingress_port);
+    }
+    
+    // 丢弃动作
+    action drop() {
+        mark_to_drop(standard_metadata);
+        port_counter.count((bit<32>) standard_metadata.ingress_port);
+    }
     table fwd_table {
         key = {
             standard_metadata.ingress_port: exact;
@@ -53,17 +63,7 @@ control MyIngress(inout headers hdr,
         default_action = NoAction(); // 默认动作
     }
 
-    // 转发动作
-    action forward(bit<9> egress_port) {
-        standard_metadata.egress_spec = egress_port;
-        port_counter.count((bit<32>) standard_metadata.ingress_port);
-    }
-    
-    // 丢弃动作
-    action drop() {
-        mark_to_drop(standard_metadata);
-        port_counter.count((bit<32>) standard_metadata.ingress_port);
-    }
+
 
     // 应用转发逻辑
     apply {
