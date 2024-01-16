@@ -17,12 +17,6 @@ struct headers {
     ethernet_t ethernet;
 }
 
-counter my_counter {
-    type: packets_and_bytes;
-    size: 1024;
-}
-
-
 
 parser MyParser(packet_in packet,
                 out headers hdr,
@@ -41,6 +35,7 @@ control MyIngress(inout headers hdr,
                   inout metadata meta,
                   inout standard_metadata_t standard_metadata) {
     // 转发表
+    counter my_counter (PACKETS_AND_BYTES, 1024);
     table fwd_table {
         key = {
             standard_metadata.ingress_port: exact;
