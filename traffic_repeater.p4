@@ -35,8 +35,10 @@ control MyIngress(inout headers hdr,
                   inout metadata meta,
                   inout standard_metadata_t standard_metadata) {
     // 转发表
-    counter my_counter (1024, CounterType.packets_and_bytes);
-
+    counter my_counter {
+    type: packets_and_bytes;
+    size: 1024;
+}
     table fwd_table {
         key = {
             standard_metadata.ingress_port: exact;
