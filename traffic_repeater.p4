@@ -17,7 +17,10 @@ struct headers {
     ethernet_t ethernet;
 }
 
-counter my_counter (PACKETS_AND_BYTES, 1024);
+counter my_counter {
+    type: packets_and_bytes;
+    size: 1024;
+}
 
 
 
