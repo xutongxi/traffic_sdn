@@ -17,10 +17,8 @@ struct headers {
     ethernet_t ethernet;
 }
 
-counter my_counter {
-    type: PACKETS_AND_BYTES;
-    size: 1024;
-}
+counter my_counter (PACKETS_AND_BYTES, 1024);
+
 
 
 parser MyParser(packet_in packet,
