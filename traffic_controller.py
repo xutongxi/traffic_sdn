@@ -45,10 +45,10 @@ def get_traffic_stats(controller, my_counter):
     :param counter_name: 计数器的名称，例如 'my_counter'。
     :return: 返回一个包含包数量和字节总数的元组。
     """
-    counter_index = 0  # 假设我们关注的是索引为 0 的计数器项
+    port_number = 1
 
     # 使用控制器的 counter_read 方法从交换机获取计数器数据
-    counter_data = controller.counter_read(my_counter, counter_index)
+    counter_data = controller.counter_read(my_counter, port_number)
 
     # 解析并返回所需的统计数据
     # 注意：返回的数据结构取决于 P4Runtime API 的具体实现
@@ -58,7 +58,7 @@ def get_traffic_stats(controller, my_counter):
     return packet_count, byte_count
 
 def check_traffic_threshold(controller):
-    traffic_stats = get_traffic_stats(controller, "traffic_counter")
+    traffic_stats = get_traffic_stats(controller, "port_counter")
     byte_count =  traffic_stats[1]
     if byte_count * 8 / 10 >= THRESHOLD_DROP:
         return "drop"
