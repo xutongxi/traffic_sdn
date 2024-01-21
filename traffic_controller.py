@@ -50,10 +50,12 @@ def get_traffic_stats(controller, my_counter):
     # 使用控制器的 counter_read 方法从交换机获取计数器数据
     counter_data = controller.counter_read(my_counter, port_number)
 
-    # 解析并返回所需的统计数据
-    # 注意：返回的数据结构取决于 P4Runtime API 的具体实现
-    packet_count = counter_data.packet_count if counter_data is not None else 0
-    byte_count = counter_data.byte_count if counter_data is not None else 0
+   # 检查 counter_data 是否为 None
+    if counter_data is None:
+        return 0, 0
+
+    # 解析元组中的数据
+    packet_count, byte_count = counter_data
 
     return packet_count, byte_count
 
