@@ -74,9 +74,8 @@ control MyIngress(inout headers hdr,
 
 control MyDeparser(packet_out packet, in headers hdr) {
     apply {
-
-    /* Deparser not needed */
-
+        //parsed headers have to be added again into the packet.
+        packet.emit(hdr.ethernet);
     }
 }
 
