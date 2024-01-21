@@ -15,8 +15,8 @@
             "device_id": 1,
             "grpc_port": 50051,
             "grpc_ip": "192.168.0.51",
-            "json_path": "/root/p4/build/repeater.json",
-            "p4rt_path": "/root/p4/build/repeater.p4info.txt",
+            "json_path": "/root/p4/build/traffic_repeater.json",
+            "p4rt_path": "/root/p4/build/traffic_repeater.p4info.txt",
             "id": "s1"
         },
         {
@@ -26,8 +26,8 @@
             "device_id": 2,
             "grpc_port": 50051,
             "grpc_ip": "192.168.0.52",
-            "json_path": "/root/p4/build/repeater.json",
-            "p4rt_path": "/root/p4/build/repeater.p4info.txt",
+            "json_path": "/root/p4/build/traffic_repeater.json",
+            "p4rt_path": "/root/p4/build/traffic_repeater.p4info.txt",
             "id": "s2"
         },
         {
@@ -37,8 +37,8 @@
             "device_id": 3,
             "grpc_port": 50051,
             "grpc_ip": "192.168.0.53",
-            "json_path": "/root/p4/build/repeater.json",
-            "p4rt_path": "/root/p4/build/repeater.p4info.txt",
+            "json_path": "/root/p4/build/traffic_repeater.json",
+            "p4rt_path": "/root/p4/build/traffic_repeater.p4info.txt",
             "id": "s3"
         }
     ],
